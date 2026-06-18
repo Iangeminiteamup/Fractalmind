@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FractalMind — Multi-Agent Architecture</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131a26;
+            --text-color: #f3f4f6;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --border-color: #1e293b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.05em;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: #9ca3af;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .workspace {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        label {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #d1d5db;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            background-color: #070a10;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 16px;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>FractalMind</h1>
+            <p class="subtitle">Decentralized, Neuron-Based Multi-Agent Framework</p>
+        </header>
+
+        <main class="workspace">
+            <div class="input-group">
+                <label for="theory-input">Input Core Thesis or Black Swan Data Point:</label>
+                <textarea id="theory-input" placeholder="Type or paste your architectural concepts, nodes, or distributed data rules here..."></textarea>
+            </div>
+            <div class="actions">
+                <button onclick="handleGenerate()">Initialize Network</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function handleGenerate() {
+            const input = document.getElementById('theory-input').value;
+            if (!input.trim()) {
+                alert('Please enter some data or a thesis to initialize.');
+                return;
+            }
+            alert('Network structure mapped! (This is where the agent weights will eventually process your framework).');
+        }
+    </script>
+
+</body>
+</html>
