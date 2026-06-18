@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FractalMind Workspace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-6">
+
+    <header class="w-full max-w-4xl mx-auto flex justify-between items-center border-b border-gray-800 pb-4 mb-6">
+        <div>
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-blue-400">FractalMind</h1>
+            <p class="text-xs text-gray-400">Decentralized Multi-Agent Framework // Core Command</p>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></span>
+            <span class="text-xs font-mono text-gray-400">NODE_01_ACTIVE</span>
+        </div>
+    </header>
+
+    <main class="w-full max-w-4xl mx-auto flex-grow flex flex-col">
+        <div class="bg-slate-900 border border-gray-800 rounded-xl p-4 sm:p-6 flex-grow flex flex-col justify-between glow-effect">
+            
+            <div class="mb-4">
+                <label for="concept-input" class="block text-sm font-medium text-gray-300 mb-2">
+                    Ingest Core Architectural Thesis / Black Swan Parameter
+                </label>
+                <p class="text-xs text-gray-500 mb-4">
+                    Input synthesized conclusions here. Submissions bypass human UI layers and stream straight to the ephemeral neural update cache.
+                </p>
+            </div>
+
+            <div class="flex-grow flex mb-6">
+                <textarea 
+                    id="concept-input" 
+                    class="w-full p-4 bg-slate-950 border border-gray-800 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none font-mono text-sm text-gray-200 placeholder-gray-600 focus:outline-none"
+                    placeholder="// Paste synthesized frameworks or value matrices here...&#10;// Ready for machine ingestion."
+                ></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-800 pt-4">
+                <div id="network-status" class="text-xs font-mono text-gray-500">
+                    System awaiting network initialization parameters...
+                </div>
+                <button 
+                    onclick="initializeNetwork()" 
+                    id="submit-btn"
+                    class="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm rounded-lg transition-colors duration-200 shadow-md flex items-center justify-center space-x-2"
+                >
+                    <span>Initialize Network</span>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="w-full max-w-4xl mx-auto text-center text-[10px] font-mono text-gray-600 mt-6 border-t border-gray-900 pt-4">
+        FRACTALMIND CORE • DECENTRALIZED COGNITION LEDGER • STEP 1 ACTIVE
+    </footer>
+
+    <script>
+        async function initializeNetwork() {
+            const inputField = document.getElementById('concept-input');
+            const statusLabel = document.getElementById('network-status');
+            const submitBtn = document.getElementById('submit-btn');
+            const dataContent = inputField.value.trim();
+
+            if (!dataContent) {
+                alert("Workspace empty. Please paste a valid structural thesis or data packet before initiating network ingestion.");
+                return;
+            }
+
+            // Lock UI during data transit
+            statusLabel.innerText = "Encrypting packet & locating cloud vault...";
+            statusLabel.className = "text-xs font-mono text-amber-500";
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            try {
+                // Generate a unique filename based on current timestamp
+                const filename = `thesis_${Date.now()}.txt`;
+                
+                // Fire data packet directly to our new serverless API endpoint
+                const response = await fetch(`/api/upload?filename=${filename}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain',
+                    },
+                    body: dataContent,
+                });
+
+                if (response.ok) {
+                    statusLabel.innerText = "Ingestion complete. Data safely cached in cloud network weights.";
+                    statusLabel.className = "text-xs font-mono text-green-400";
+                    inputField.value = ""; // Clear box on success
+                } else {
+                    throw new Error("Server rejected data packet connection.");
+                }
+
+            } catch (error) {
+                console.error(error);
+                statusLabel.innerText = "Ingestion paused: Awaiting Vercel configuration environment.";
+                statusLabel.className = "text-xs font-mono text-red-400";
+            } finally {
+                // Re-enable interface
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+    </script>
+</body>
+</html>
